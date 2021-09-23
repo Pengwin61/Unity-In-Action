@@ -10,6 +10,7 @@ public class MouseLook : MonoBehaviour
         MouseX=1,
         MouseY=2
     }
+
     public RotationAxes axes = RotationAxes.MouseXAndY;         // ќбъ€вл€ем общедоступную переменную
                                                                 // котора€ по€вл€етс€ в редакторе Unity
 
