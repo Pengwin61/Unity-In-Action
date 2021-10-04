@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RayShooter : MonoBehaviour
 {
@@ -10,10 +11,10 @@ public class RayShooter : MonoBehaviour
 
     void Start()
     {
-        _camera = GetComponent<Camera>();
+        //_camera = GetComponent<Camera>();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     private void OnGUI()
@@ -27,8 +28,10 @@ public class RayShooter : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))        // Реакция на нажатие кнопки мыши
+        if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())        // Реакция на нажатие кнопки мыши
         {
+            
+                        
             Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);    // Середина экрана - это половина
                                                                                                 // его ширины и высоты.
 
