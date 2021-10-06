@@ -7,6 +7,13 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Text scoreLabel;
 
+    [SerializeField] private SettingsPopup settingsPopup;
+
+
+    private void Start()
+    {
+        settingsPopup.Close();
+    }
 
     private void Update()
     {
@@ -15,7 +22,13 @@ public class UIController : MonoBehaviour
 
     public void OnOpenSettings()
     {
-        Debug.Log("open settings");
+        settingsPopup.Open();
     }
 
+
+
+    public void OnPointerDown()
+    {
+        Debug.Log("poiter down.");
+    }
 }
