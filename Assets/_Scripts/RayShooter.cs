@@ -11,7 +11,7 @@ public class RayShooter : MonoBehaviour
 
     void Start()
     {
-        //_camera = GetComponent<Camera>();
+        _camera = GetComponent<Camera>();
 
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -22,19 +22,16 @@ public class RayShooter : MonoBehaviour
         int size = 12;
         float posX = _camera.pixelWidth / 2 - size / 4;
         float posY = _camera.pixelHeight / 2 - size / 2;
-        GUI.Label(new Rect(posX,posY,size,size), "*");
+        GUI.Label(new Rect(posX, posY, size, size), "*");
     }
 
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())        // Реакция на нажатие кнопки мыши
-        {
-            
-                        
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())        // Реакция на нажатие кнопки мыши
+        {       
             Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);    // Середина экрана - это половина
                                                                                                 // его ширины и высоты.
-
 
             Ray ray = _camera.ScreenPointToRay(point);                  // Создание в этой точке луч
                                                                         // методом ScreenPointToRay
@@ -47,6 +44,7 @@ public class RayShooter : MonoBehaviour
                 if (target != null)
                 {
                     target.ReactToHit();
+                    Messenger.Broadcast(GameEvent.ENEMY_HIT);
                 }
                 else
                 {
