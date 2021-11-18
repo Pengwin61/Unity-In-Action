@@ -9,7 +9,7 @@ public class FPSInput : MonoBehaviour
     public float speed = 6.0f;
     public float gravity = -9.8f;
 
-    public const float baseSpeed =6.0f;
+    public const float baseSpeed = 6.0f;
 
 
     private CharacterController _characterController;
@@ -34,7 +34,7 @@ public class FPSInput : MonoBehaviour
     }
 
 
-    private void Update()
+     void Update()
     {
         float deltaX = Input.GetAxis("Horizontal") * speed;
         float deltaZ = Input.GetAxis("Vertical") * speed;

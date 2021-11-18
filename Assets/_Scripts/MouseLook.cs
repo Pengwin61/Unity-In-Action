@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
+[AddComponentMenu("Control Script/Mouse Look")]
 public class MouseLook : MonoBehaviour
 {
     public enum RotationAxes
@@ -42,20 +46,23 @@ public class MouseLook : MonoBehaviour
                                                                             // минимальным и максимальным
                                                                             // значениями.
 
-            float rotationY = transform.localEulerAngles.y;     // Сохраняем одинаковый угол
-                                                                // поворота вокруг оси Y (т.е
-                                                                // вращение в горизонтальной
-                                                                // плоскости отсутствует
-
-            transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);     // Создаем новый вектор
-                                                                                    // из сохраненных значений
-                                                                                    // поворота
+            transform.localEulerAngles = new Vector3(_rotationX, transform.localEulerAngles.y, 0);     // Создаем новый вектор
+                                                                                                       // из сохраненных значений
+                                                                                                       // поворота
         }
         else
         {
-            // это комбинированный поворот
-            _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
-            _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
+            //float rotationY = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityHor;
+
+            //_rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+            //_rotationX = Mathf.Clamp(_rotationX, rotationY, 0);
+            //transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+
+
+
+            //это комбинированный поворот
+           _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+           _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
 
             float delta = Input.GetAxis("Mouse X") * sensitivityHor;    //  Приращение угла поворота
                                                                         //  через значение delta
@@ -66,7 +73,7 @@ public class MouseLook : MonoBehaviour
             transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
         }
     }
-    private void Start()
+     void Start()
     {
         Rigidbody body = GetComponent<Rigidbody>();
         if (body != null)

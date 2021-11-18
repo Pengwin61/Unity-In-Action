@@ -8,6 +8,11 @@ public class RayShooter : MonoBehaviour
     private Camera _camera;
 
 
+    [SerializeField] private AudioSource soundSource;
+    [SerializeField] private AudioClip hitWallSound;
+    [SerializeField] private AudioClip hitEnemySound;
+
+
 
     void Start()
     {
@@ -45,10 +50,12 @@ public class RayShooter : MonoBehaviour
                 {
                     target.ReactToHit();
                     Messenger.Broadcast(GameEvent.ENEMY_HIT);
+                    soundSource.PlayOneShot(hitEnemySound);
                 }
                 else
                 {
                     StartCoroutine(SphereIndicator(hit.point));
+                    soundSource.PlayOneShot(hitWallSound);
                 }
                 
             }

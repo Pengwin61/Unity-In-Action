@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    [SerializeField] private int _health;
+    private int _health;
 
 
     private void Start()
